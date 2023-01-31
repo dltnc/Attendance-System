@@ -1,7 +1,7 @@
 // Name - Email - Password - Roles - AccountStatus
 // const mongoose = require('mongoose')
 
-const {model, Schema} = require('mongoose');
+const { model, Schema } = require('mongoose');
 const { required } = require('nodemon/lib/config');
 
 const userSchema = new Schema({
@@ -9,13 +9,13 @@ const userSchema = new Schema({
         type: String,
         required: true,
         minlength: 3,
-        maxlength: 10
+        maxlength: 20
     },
     email: {
         type: String,
         required: true,
         validate: {
-            validator: function(v) {
+            validator: function (v) {
                 return /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+([^<>()\.,;:\s@\"]{2,}|[\d\.]+))$/.test(v);
             },
             message: (prop) => 'Invalid email: ${prop.value}',
@@ -38,6 +38,6 @@ const userSchema = new Schema({
     }
 });
 
-const User = model('User', userSchema)
+const User = model('User', userSchema);
 
 module.exports = User;
